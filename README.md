@@ -12,6 +12,7 @@ A [Pure][pure]-inspired prompt for [fish shell][fish]. It’s very similar to Pu
 * Shows the working directory
 * Shows the current git branch or revision
 * Shows up/down arrows if you have unpushed/unpulled commits
+* Shows the name of the active Python Virtualenv 
 * The prompt character turns red if the last command’s exit status is 1
 
 ## Installation
