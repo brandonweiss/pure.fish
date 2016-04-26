@@ -62,6 +62,14 @@ function _prompt_color_for_status
   end
 end
 
+function _venv_is_activated
+  set -q VIRTUAL_ENV  
+end
+
+function _venv_name
+  basename $VIRTUAL_ENV
+end
+
 function fish_prompt
   set -l last_status $status
 
@@ -72,5 +80,11 @@ function fish_prompt
     _print_in_color " "(_git_upstream_status) cyan
   end
 
-  _print_in_color "\n❯ " (_prompt_color_for_status $last_status)
+  printf "\n"
+
+  if _venv_is_activated
+    _print_in_color (echo "("(_venv_name)")") white
+  end 
+  
+  _print_in_color "❯ " (_prompt_color_for_status $last_status)
 end
