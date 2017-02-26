@@ -48,21 +48,21 @@ end
 function _cmd_duration_days
   set -l days (expr $CMD_DURATION / 1000 / 60 / 60 / 24)
   if test $days -gt 0
-    echo $days"d"
+    echo $days"d "
   end
 end
 
 function _cmd_duration_hours
   set -l hours (expr $CMD_DURATION / 1000 / 60 / 60 \% 24)
   if test $hours -gt 0
-    echo $hours"h"
+    echo $hours"h "
   end
 end
 
 function _cmd_duration_mins
   set -l minutes (expr $CMD_DURATION / 1000 / 60 \% 60)
   if test $minutes -gt 0
-    echo $minutes"m"
+    echo $minutes"m "
   end
 end
 
@@ -113,7 +113,7 @@ function fish_prompt
     _print_in_color " "(_git_upstream_status) cyan
   end
 
-  _print_in_color " "(_cmd_duration) yellow
+  _print_in_color (_cmd_duration) yellow
 
   _print_in_color "\n❯ " (_prompt_color_for_status $last_status)
 end
