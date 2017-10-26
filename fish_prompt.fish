@@ -29,6 +29,11 @@ function _git_ahead_of_upstream
   test (git rev-list --left-only --count HEAD...@"{u}" ^ /dev/null) -gt 0
 end
 
+function _git_dirty
+  set -l is_git_dirty (command git status --porcelain --ignore-submodules ^/dev/null)
+  test -n "$is_git_dirty"
+end
+
 function _git_upstream_status
   set -l arrows
 
@@ -43,6 +48,16 @@ function _git_upstream_status
   end
 
   echo $arrows
+end
+
+function _git_status
+  set -l asterisk
+
+  if _git_dirty
+    set asterisk "$asterisk*"
+  end
+
+  echo $asterisk
 end
 
 function _print_in_color
@@ -69,6 +84,7 @@ function fish_prompt
 
   if _in_git_directory
     _print_in_color " "(_git_branch_name_or_revision) 242
+    _print_in_color " "(_git_status) FCBC47
     _print_in_color " "(_git_upstream_status) cyan
   end
 
