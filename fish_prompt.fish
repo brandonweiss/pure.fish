@@ -83,8 +83,8 @@ function fish_prompt
   _print_in_color "\n"(_pwd_with_tilde) blue
 
   if _in_git_directory
-    _print_in_color " "(_git_branch_name_or_revision) 242
-    _print_in_color " "(_git_status) FCBC47
+    _print_in_color " "(_git_branch_name_or_revision) green
+    _print_in_color " "(_git_status) yellow
     _print_in_color " "(_git_upstream_status) cyan
   end
 
