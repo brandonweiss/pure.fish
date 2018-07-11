@@ -1,6 +1,4 @@
-function _pwd_with_tilde
-  echo $PWD | sed 's|^'$HOME'\(.*\)$|~\1|'
-end
+set fish_prompt_pwd_dir_length 0
 
 function _in_git_directory
   git rev-parse --git-dir > /dev/null 2>&1
@@ -80,7 +78,7 @@ end
 function fish_prompt
   set -l last_status $status
 
-  _print_in_color "\n"(_pwd_with_tilde) blue
+  _print_in_color "\n"(prompt_pwd) blue
 
   if _in_git_directory
     _print_in_color " "(_git_branch_name_or_revision) 242
